@@ -15,7 +15,6 @@ const TicketCard = () => {
       <h4>Ticket Title</h4>
       <hr className="h-px border-0 bg-page mb-2" />
       <p className="whitespace-pre-wrap">
-        {" "}
         this is the title description! Please do this ticket
       </p>
       <div className="flex-grow"></div>
