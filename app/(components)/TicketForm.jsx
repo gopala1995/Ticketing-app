@@ -1,8 +1,11 @@
 "use client";
+
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import Router from "next/navigation";
 
 const TicketForm = () => {
+  const router = useRouter();
+
   const handelChange = (e) => {
     const value = e.target.value;
     const name = e.target.name;
@@ -10,8 +13,20 @@ const TicketForm = () => {
     setFormData((preState) => ({ ...preState, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const res = await fetch("/api/Tickets", {
+      method: "POST",
+      body: JSON.stringify({ formData }),
+      "content-type": "application/json",
+    });
+
+    if (!res.ok) {
+      throw new Error("failed to create new Ticket");
+    }
+
+    router.refresh();
+    router.push("/");
   };
   const startingTicketData = {
     title: "",

@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-mongoose.connect(process.env.DB_URL);
+mongoose.connect("mongodb://localhost:27017/TicketinApp");
 mongoose.Promise = global.Promise;
 
 const ticketSchema = new Schema(
@@ -19,6 +19,6 @@ const ticketSchema = new Schema(
   }
 );
 
-const Ticket = mongoose.model.Ticket || mongoose.model("Ticket", ticketSchema);
+module.exports  = mongoose.models.Ticket || mongoose.model("Ticket", ticketSchema);
 
-export default Ticket;
+// export default Ticket;
